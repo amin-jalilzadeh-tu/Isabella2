@@ -5,4 +5,5 @@ matplotlib
 scikit-learn
 numpy
 pandas
-torch==2.0.1
+torch+cpu
+-f https://download.pytorch.org/whl/cpu
