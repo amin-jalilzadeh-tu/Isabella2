@@ -141,26 +141,52 @@ def main():
         st.image("retrofit.jpg", caption="Retrofitting Example")
         st.write(
             """
-            This application demonstrates a comprehensive pipeline for Multi-Task Learning (MTL).
-            You can:
-            - Load and preprocess data
-            - Train models with different MTL architectures
-            - Evaluate them
-            - Perform inference
-            - Conduct multi-objective optimization (Approach 11.1 & 11.2)
-            - Apply MCDM to select optimal solutions
-            - Post-process results with clustering, correlation, parallel coordinates, and more.
-            
-            **How it works**:
-            1. **Data Preprocessing**: Merges CSVs, scales data, creates PyTorch DataLoaders.
-            2. **Training**: Trains multiple MTL models (Shared, Separate, Weighted Sum, MGDA, Uncertainty, etc.).
-            3. **Evaluation**: Ranks models based on performance metrics.
-            4. **Inference**: Predicts outcomes on new or user-provided data.
-            5. **Optimization**: Finds Pareto-optimal solutions using user-driven or constraint-based approaches.
-            6. **MCDM**: Selects best solutions via ASF, Pseudo-Weights, or High Trade-off analysis with user-defined weights.
-            7. **Advanced Post-Processing**: Clustering, 3D scatter, correlation, parallel coords, sensitivity analysis, etc.
-            8. **Results & Comparison**: Summarizes and compares final solutions side-by-side.
-            """
+        # **Multitask Learning Pipeline for Building Performance Analysis**
+
+        This code implements a comprehensive workflow for training, evaluating, and optimizing a **Multitask Learning (MTL)** model to predict critical building performance indicators. By combining different modules—from data preprocessing and model architecture definitions to multi-objective optimization and post-processing—this pipeline provides a seamless end-to-end solution for retrofit decision-making.
+
+        ---
+
+        ### **Key Highlights**
+
+        - **Data Loading & Preprocessing**  
+        - Reads simulation outputs for multiple time horizons (2020, 2050, 2100).  
+        - Automatically merges and cleans data (e.g., checking if "Simulation ID" is consistent).  
+        - Splits data into inputs (e.g., U-factor, thermal resistance) and outputs (energy, carbon, cost, comfort).  
+        - Normalizes both inputs and outputs with `MinMaxScaler` to stabilize training.
+
+        - **Model Architectures**  
+        - Offers various neural network designs (e.g., **SharedMTLModel**, **SeparateMTLModel**, **Ref_Based**, **Data_Based**) for flexible experimentation.  
+        - Implements uncertainty-based, MGDA, and weighted-sum methods to handle multi-task objectives.  
+        - Accommodates unique branches for different targets—Annual Energy Consumption, Total Retrofit Cost, CO₂ Emissions, Comfort Days.
+
+        - **Training & Early Stopping**  
+        - Each method (weighted-sum, MGDA, uncertainty, CAGrad) has a dedicated training routine.  
+        - **EarlyStopping** halts training when validation loss fails to improve, helping avoid overfitting.
+
+        - **Evaluation & Metrics**  
+        - Includes inverse-transform evaluations to revert scaled predictions to their original magnitude.  
+        - Computes MAE, RMSE, R², and more.  
+        - Offers percentage error histograms and actual vs. predicted plots for transparent model performance insight.
+
+        - **Multi-Objective Optimization**  
+        - Explores **Pareto efficiency**: balancing trade-offs among conflicting objectives (energy, cost, carbon, comfort).  
+        - Utilizes the **Pymoo** library algorithms (e.g., NSGA2) to identify non-dominated solutions under given constraints (minimum/maximum U-factor, thermal resistance ranges).  
+        - Combines user-driven (11.1) and constraint-based (11.2) approaches to yield flexible retrofit strategies.
+
+        - **MCDM (Multi-Criteria Decision Making)**  
+        - Applies Weighted Scores, ASF, Pseudo-Weights, and High Trade-off Points to prioritize Pareto-optimal solutions.  
+        - Helps stakeholders choose a “best” design based on specific weighting preferences (e.g., more emphasis on reducing cost vs. maximizing comfort).
+
+        - **Post-Processing & Visualization**  
+        - Uses clustering (K-Means) and correlation analysis to group similar solutions and reveal design trends.  
+        - Generates parallel coordinates, 3D scatter plots, and heatmaps to interpret how input features influence each target.  
+        - Provides sensitivity analysis via linear regression coefficients to quantify which parameters matter most.
+
+        ---
+
+        **In essence,** this code enables users to ingest building simulation data, train specialized MTL neural networks, evaluate their predictive fidelity, and then conduct multi-objective optimizations. Decision-makers can thus refine retrofitting strategies, balancing energy efficiency, cost, carbon footprint, and occupant comfort in an integrated, data-driven manner.
+        """
         )
 
     ########################################################################
