@@ -8,3 +8,5 @@ pandas
 torch -f https://download.pytorch.org/whl/cpu
 cvxpy
 shap
+joblib
+pymoo
