@@ -47,16 +47,12 @@ def save_session_state_to_json(json_path="session_state.json"):
     for k in keys_to_store:
         if k in st.session_state and st.session_state[k] is not None:
             val = st.session_state[k]
-            # If it's a DataFrame
             if isinstance(val, pd.DataFrame):
-                # Convert DF to list-of-dicts for JSON serialization
                 data_to_save[k] = {
                     "_type": "DataFrame",
                     "_value": val.to_dict(orient="records")
                 }
-            # If it's a tuple of (DF, row(s), etc.)
             elif isinstance(val, tuple):
-                # We'll try to handle each element
                 tuple_list = []
                 for item in val:
                     if isinstance(item, pd.DataFrame):
@@ -65,7 +61,6 @@ def save_session_state_to_json(json_path="session_state.json"):
                             "_value": item.to_dict(orient="records")
                         })
                     else:
-                        # store as-is if it's not a DF
                         tuple_list.append(item)
                 data_to_save[k] = {
                     "_type": "tuple",
@@ -90,7 +85,7 @@ def load_session_state_from_json(json_path="session_state.json"):
             elif v["_type"] == "tuple":
                 restored_list = []
                 for item in v["_value"]:
-                    if isinstance(item, dict) and item.get("_type")=="DataFrame":
+                    if isinstance(item, dict) and item.get("_type") == "DataFrame":
                         restored_list.append(pd.DataFrame(item["_value"]))
                     else:
                         restored_list.append(item)
@@ -104,7 +99,9 @@ def main():
     st.set_page_config(page_title="Ultra MTL UI", layout="wide")
     st.title("Ultra-Advanced Multi-Task Learning Portal")
 
+    # ADDING NEW PAGE: Introduction
     pages = [
+        "Introduction",
         "Data Preprocessing",
         "Training",
         "Evaluation",
@@ -136,7 +133,40 @@ def main():
     if col_load.button("Load Session"):
         load_session_state_from_json("session_state.json")
 
-    if page == "Data Preprocessing":
+    ########################################################################
+    # PAGE: Introduction
+    ########################################################################
+    if page == "Introduction":
+        st.header("Welcome to the Multi-Task Learning Interface")
+        st.image("retrofit.jpg", caption="Retrofitting Example")
+        st.write(
+            """
+            This application demonstrates a comprehensive pipeline for Multi-Task Learning (MTL).
+            You can:
+            - Load and preprocess data
+            - Train models with different MTL architectures
+            - Evaluate them
+            - Perform inference
+            - Conduct multi-objective optimization (Approach 11.1 & 11.2)
+            - Apply MCDM to select optimal solutions
+            - Post-process results with clustering, correlation, parallel coordinates, and more.
+            
+            **How it works**:
+            1. **Data Preprocessing**: Merges CSVs, scales data, creates PyTorch DataLoaders.
+            2. **Training**: Trains multiple MTL models (Shared, Separate, Weighted Sum, MGDA, Uncertainty, etc.).
+            3. **Evaluation**: Ranks models based on performance metrics.
+            4. **Inference**: Predicts outcomes on new or user-provided data.
+            5. **Optimization**: Finds Pareto-optimal solutions using user-driven or constraint-based approaches.
+            6. **MCDM**: Selects best solutions via ASF, Pseudo-Weights, or High Trade-off analysis with user-defined weights.
+            7. **Advanced Post-Processing**: Clustering, 3D scatter, correlation, parallel coords, sensitivity analysis, etc.
+            8. **Results & Comparison**: Summarizes and compares final solutions side-by-side.
+            """
+        )
+
+    ########################################################################
+    # PAGE: Data Preprocessing
+    ########################################################################
+    elif page == "Data Preprocessing":
         st.header("Step 1: Data Preprocessing")
         if st.button("Run Data Preprocessing"):
             out_arch = st.checkbox("Save CSVs?", True)
@@ -151,6 +181,9 @@ def main():
             st.write("Preview df_outputs:")
             st.dataframe(st.session_state["data_dict"]["df_outputs"].head())
 
+    ########################################################################
+    # PAGE: Training
+    ########################################################################
     elif page == "Training":
         st.header("Step 2: Training")
         if st.session_state["data_dict"] is None:
@@ -181,6 +214,9 @@ def main():
                 st.session_state["train_done"] = True
                 st.success("Training completed")
 
+    ########################################################################
+    # PAGE: Evaluation
+    ########################################################################
     elif page == "Evaluation":
         st.header("Step 3: Evaluation")
         if st.session_state["data_dict"] is None:
@@ -207,6 +243,9 @@ def main():
                 st.write("Ranked Models:")
                 st.dataframe(rank_df)
 
+    ########################################################################
+    # PAGE: Inference
+    ########################################################################
     elif page == "Inference":
         st.header("Step 4: Inference")
         upfile = st.file_uploader("Upload CSV for inference", type=["csv"])
@@ -242,6 +281,9 @@ def main():
                 df_pred = pd.DataFrame(preds, columns=["Energy","Cost","Emission","Comfort"])
                 st.dataframe(df_pred.head(20))
 
+    ########################################################################
+    # PAGE: Optimization
+    ########################################################################
     elif page == "Optimization":
         st.header("Step 5: Optimization")
         st.subheader("Approach 11.1 - User-Driven")
@@ -286,6 +328,9 @@ def main():
             st.session_state["df_pareto_11_2"] = df_11_2
             st.dataframe(df_11_2.head(10))
 
+    ########################################################################
+    # PAGE: MCDM
+    ########################################################################
     elif page == "MCDM":
         st.header("Step 6: MCDM")
         approach_choice = st.selectbox("Approach", ["11_1","11_2"])
@@ -334,6 +379,9 @@ def main():
                 mcdm_key = "mcdm_"+approach_choice
                 st.session_state[mcdm_key] = (df_sorted, best_asf, best_pw, best_ht)
 
+    ########################################################################
+    # PAGE: Advanced Post-Processing
+    ########################################################################
     elif page == "Advanced Post-Processing":
         st.header("Step 7: Advanced Post-Processing")
         approach_choice = st.selectbox("Approach to post-process", ["11_1","11_2"])
@@ -422,6 +470,9 @@ def main():
                     title="Density Based Pareto"
                 )
 
+    ########################################################################
+    # PAGE: Results & Comparison
+    ########################################################################
     elif page == "Results & Comparison":
         st.header("Step 8: Results & Comparison")
         cL, cR = st.columns(2)
@@ -450,6 +501,7 @@ def main():
                 st.dataframe(ht22.head(5))
             else:
                 st.info("No MCDM for 11.2")
+
 
 if __name__ == "__main__":
     main()
