@@ -138,12 +138,12 @@ def main():
     ########################################################################
     if page == "Introduction":
         st.header("Welcome to the Multi-Task Learning Interface")
-        st.write("This tool allows to select optimal retrofit solutions considering the effect of heat waves in the Netherlands. Given the preference of the user, it select the best-performing intervention considering trade offs between energy consumption, comfort, cost and environmental impact of the intervention. It is the result of the Graduation Project of Isabella Lucchese, a student at Delft University of Technology founded by ARUP. \n"
-                  Key contributors to this tool are: \n"
-                  Isabella Lucchese - Author \n"
-                  Amin Jalilzadeh - Supervisor \n"
-                  Azarakhsh Rafiee - First mentor \n"
-                  Willem van der Spoel - Second mentor")
+        st.write("This tool allows to select optimal retrofit solutions considering the effect of heat waves in the Netherlands. Given the preference of the user, it select the best-performing intervention considering trade offs between energy consumption, comfort, cost and environmental impact of the intervention. It is the result of the Graduation Project of Isabella Lucchese, a student at Delft University of Technology founded by ARUP."
+        st.write("Key contributors to this tool are:")
+        st.write("Isabella Lucchese - Author")
+        st.write("Amin Jalilzadeh - Supervisor")
+        st.write("Azarakhsh Rafiee - First mentor")
+        st.write("Willem van der Spoel - Second mentor")
         st.image("arup.png", caption="Contributor", width= 100)
         st.image("tudelft.png", caption="Contributor", width=100)
         st.write(
