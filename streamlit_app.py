@@ -97,7 +97,7 @@ def load_session_state_from_json(json_path="session_state.json"):
 ###############################################################################
 def main():
     st.set_page_config(page_title="Ultra MTL UI", layout="wide")
-    st.title(" Isa Chaooo Multi-Task Learning Portal")
+    st.title(" Isa Chaoooooo Multi-Task Learning Portal")
 
     # ADDING NEW PAGE: Introduction
     pages = [
