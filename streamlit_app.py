@@ -139,8 +139,15 @@ def main():
     if page == "Introduction":
         st.header("Welcome to the Multi-Task Learning Interface")
         st.write("This tool allows to select optimal retrofit solutions considering the effect of heat waves in the Netherlands. Given the preference of the user, it select the best-performing intervention considering trade offs between energy consumption, comfort, cost and environmental impact of the intervention. It is the result of the Graduation Project of Isabella Lucchese, a student at Delft University of Technology founded also by ARUP. Key contributors to this tool are the supervisor Amin Jalilzareh, together with the mentors Azarakhsh Rafiee and Willem van der Spoel.")
-        st.image("arup.png", caption="Contributor")
-        st.image("tudelft.png", caption="Contributor")
+        col1, col2 = st.columns(2)
+    with col1:
+        st.image("arup.png", caption="Contributor", width=100)
+    
+    with col2:
+        # Adjust the width as needed (e.g., 100 pixels)
+        st.image("tudelft.png", caption="Contributor", width=100)
+    #    st.image("arup.png", caption="Contributor")
+    #    st.image("tudelft.png", caption="Contributor")
         st.write(
             """
         # **Multitask Learning Pipeline for Building Performance Analysis**
