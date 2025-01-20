@@ -520,8 +520,8 @@ def main():
                 df_s11, asf11, pseudo11, ht11 = st.session_state["mcdm_11_1"]
                 st.write("Best ASF:")
                 st.dataframe(asf11.to_frame().T)
-                st.write("Best Pseudo-Weights:")
-                st.dataframe(pseudo11.to_frame().T)
+ #               st.write("Best Pseudo-Weights:")
+ #               st.dataframe(pseudo11.to_frame().T)
  #               st.write("High Trade-off (top5):")
  #               st.dataframe(ht11.head(5))
             else:
