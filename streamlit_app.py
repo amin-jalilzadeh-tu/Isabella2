@@ -396,8 +396,8 @@ def main():
                 F_norm = (F - F_min)/(F_max - F_min)
                 w_arr = np.array([wA,wC,wT,wN])
                 wscore = F_norm @ w_arr
-           #     df_p["Weighted_Score"] = wscore
-           #     df_sorted = df_p.sort_values(by="Weighted_Score").reset_index(drop=True)
+                df_p["Weighted_Score"] = wscore
+                df_sorted = df_p.sort_values(by="Weighted_Score").reset_index(drop=True)
                 asf = ASF()
                 idx_asf = asf.do(F, w_arr).argmin()
                 best_asf = df_p.iloc[idx_asf]
