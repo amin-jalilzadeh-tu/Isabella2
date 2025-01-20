@@ -261,7 +261,7 @@ def main():
             st.warning("No data for evaluation.")
         else:
             st.write("Select methods to evaluate:")
-            methods_sel = st.multiselect("Methods", ["weighted_sum","mgda","uncertainty","cagrad"], default=["weighted_sum","mgda","uncertainty"])
+            methods_sel = st.multiselect("Methods", ["weighted_sum","mgda","uncertainty","cagrad"], default=["weighted_sum","mgda"])
             if st.button("Run Evaluation"):
                 model_types = ["shared","separate","Ref_Based_Isa","Data_Based_Isa","More_Shared_Layer","Few_Shared_Layers","Deep_Balanced_Layer"]
                 (eval_dict, robust_dict, real_dict, perf_df, rank_df) = evaluate_all_models(
