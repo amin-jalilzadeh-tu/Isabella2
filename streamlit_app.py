@@ -150,7 +150,7 @@ def main():
         with col2:
             st.image("tudelft.png", caption="Contributor", width=100)
         with col3:
-            st.image("multicare.png", caption="Contributor", width=100)
+            st.image("multicare.png", caption="Contributor", width=130)
         st.write(
             """
         # **Multitask Learning Pipeline for Building Performance Analysis**
