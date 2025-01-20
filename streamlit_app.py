@@ -383,7 +383,7 @@ def main():
                 st.warning(f"No Pareto for {approach_choice}.")
             else:
                 from pymoo.decomposition.asf import ASF
-                from pymoo.mcdm.pseudo_weights import PseudoWeights
+    #            from pymoo.mcdm.pseudo_weights import PseudoWeights
                 from pymoo.mcdm.high_tradeoff import HighTradeoffPoints
                 df_p = st.session_state[df_key].copy()
                 F = df_p[[
