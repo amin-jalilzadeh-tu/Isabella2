@@ -324,7 +324,7 @@ def main():
     ########################################################################
     elif page == "Optimization":
         st.header("Step 5: Optimization")
-        st.subheader("Approach 11.1 - User-Driven")
+        st.subheader("Approach 11.1 - Optimization based on dataset")
         if st.button("Run Approach 11.1"):
             if st.session_state["data_dict"] is None:
                 st.warning("Need data.")
@@ -347,7 +347,7 @@ def main():
                 st.session_state["df_pareto_11_1"] = df_p11_1
                 st.dataframe(df_p11_1.head())
 
-        st.subheader("Approach 11.2 - Constraint-Based")
+        st.subheader("Approach 11.2 - Optimization based on contraints")
         t_hor = st.slider("Time horizon", 2020, 2100, (2020,2100), 10)
         w_minmax = st.slider("Windows U-Factor", 0.0, 10.0, (0.2,2.0), 0.1)
         gf_minmax = st.slider("Ground Floor R", 0.0, 10.0, (0.5,5.0), 0.1)
