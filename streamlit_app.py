@@ -408,8 +408,8 @@ def main():
                 st.dataframe(df_sorted.head(10))
                 st.write("Best ASF:")
                 st.dataframe(best_asf.to_frame().T)
-                st.write("Best Pseudo-Weights:")
-                st.dataframe(best_pw.to_frame().T)
+#                st.write("Best Pseudo-Weights:")
+#                st.dataframe(best_pw.to_frame().T)
                 st.write("High Trade-off Points (top5):")
                 st.dataframe(best_ht.head(5))
                 mcdm_key = "mcdm_"+approach_choice
