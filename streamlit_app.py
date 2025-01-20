@@ -144,11 +144,13 @@ def main():
         st.write("Amin Jalilzadeh - Supervisor")
         st.write("Azarakhsh Rafiee - First mentor")
         st.write("Willem van der Spoel - Second mentor")
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         with col1:
             st.image("arup.png", caption="Contributor", width= 100)
         with col2:
             st.image("tudelft.png", caption="Contributor", width=100)
+        with col3:
+            st.image("multicare.png", caption="Contributor", width=100)
         st.write(
             """
         # **Multitask Learning Pipeline for Building Performance Analysis**
