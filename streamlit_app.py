@@ -533,8 +533,8 @@ def main():
                 df_s22, asf22, pseudo22, ht22 = st.session_state["mcdm_11_2"]
                 st.write("Best ASF:")
                 st.dataframe(asf22.to_frame().T)
-                st.write("Best Pseudo-Weights:")
-                st.dataframe(pseudo22.to_frame().T)
+ #               st.write("Best Pseudo-Weights:")
+ #               st.dataframe(pseudo22.to_frame().T)
  #               st.write("High Trade-off (top5):")
  #               st.dataframe(ht22.head(5))
             else:
