@@ -430,7 +430,7 @@ def main():
             df_pp = st.session_state[df_key].copy()
             st.dataframe(df_pp.head(10))
 
-        #    if st.checkbox("K-Means Clustering"):
+            if st.checkbox("K-Means Clustering"):
                 n_c = st.slider("Number of clusters", 2, 10, 5)
                 if st.button("Apply KMeans"):
                     df_pp = cluster_scenarios(df_pp, n_clusters=n_c)
@@ -493,7 +493,7 @@ def main():
                 )
                 st.write("Coefficients:", coefs)
 
-       #     if st.checkbox("Density-Based Pareto"):
+            if st.checkbox("Density-Based Pareto"):
                 x_ax = st.selectbox("X axis", df_pp.columns, index=5)
                 y_ax = st.selectbox("Y axis", df_pp.columns, index=6)
                 if "Weighted_Score" in df_pp.columns:
