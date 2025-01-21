@@ -278,8 +278,8 @@ def main():
                 )
                 st.write("Performance DF:")
                 st.dataframe(perf_df)
-                st.write("Ranked Models:")
-                st.dataframe(rank_df)
+         #       st.write("Ranked Models:")
+         #       st.dataframe(rank_df)
 
     ########################################################################
     # PAGE: Inference
