@@ -137,7 +137,7 @@ def main():
     # PAGE: Introduction
     ########################################################################
     if page == "Introduction":
-        st.header("Welcome to the Multi-Task Learning Interface")
+        st.header("Welcome to the Multi-Task Learning Tool")
         st.write("This tool allows to select optimal retrofit solutions considering the effect of heat waves in the Netherlands. Given the preference of the user, it select the best-performing intervention considering trade offs between energy consumption, comfort, cost and environmental impact of the intervention. It is the result of the Graduation Project of Isabella Lucchese, a student at Delft University of Technology founded by ARUP as part of MultiCare project.")
        # st.write("Key contributors to this tool are:")
        # st.write("Isabella Lucchese - Author")
